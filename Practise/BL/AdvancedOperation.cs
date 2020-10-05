@@ -6,11 +6,14 @@ namespace BL
 {
     public class AdvancedOperation : IAdvancedOperation
     {
+        
         private IBasicOperation BasicOperation { get; set; }
         public AdvancedOperation(IBasicOperation basicOperation)
         {
             BasicOperation = basicOperation;
+           // BasicOperation = basicOperation;
         }
+
         public int Division(int x, int y)
         {
             int cnt = 0;
@@ -42,7 +45,15 @@ namespace BL
 
         public int GetFibbonacci(int x)
         {
-            throw new NotImplementedException();
+            var first = 1;
+            var second = 1;
+            for (int i = 2; i < x; i++)
+            {
+                second = BasicOperation.Add(first, second);
+                first = BasicOperation.Subtraction(second, first);
+                Console.WriteLine(second);
+            }
+            return second;
         }
     }
 }
